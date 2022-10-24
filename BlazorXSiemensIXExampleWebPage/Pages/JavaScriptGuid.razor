@@ -1,0 +1,68 @@
+﻿@page "/JavaScriptGuid"
+@inject IJSRuntime JS
+<h3>JavaScriptGuid</h3>
+<ix-blind label="Drawer Description" collapsed>
+    Some Web-Components require further javascript function. <br />
+    For example the following drawer opens when you press the button.<br />
+    The function to open the drawer is written in js which is called by the button<br />
+    To execute a js function you need to inject IJSRuntime and call either InvokeVoidAsync or InvokeAsync<br />
+    The js function is in the wwwroot directory and is included in the index.html file<br />
+    For the the drawer reference you eigher can use document.query in js or give the function an Element Reference<br />
+</ix-blind>
+
+<ix-drawer @ref="Drawer">
+    <span>Some content of drawer</span>
+</ix-drawer>
+
+<ix-button @onclick="ShowDrawer">Toggle drawer</ix-button>
+<br />
+<br />
+
+<ix-blind label="Infobox Description" collapsed>
+    If you want to use events from Siemens IX you have to add a event listener with js<br />
+    Override the "OnAfterRender" function of your page<br />
+    Call a js function and use a ElementReference of the Component as parameter<br />
+    In the js function use the .addEventListener function to add the event name and the function to be executed<br />
+    In the following the Message bar shows you a toast when you close it<br />
+</ix-blind>
+
+<ix-message-bar type="info" @ref="InfoBox">
+    <div class="d-flex align-items-center justify-content-between">
+        I am an Info Message box <ix-button @onclick="ShowToast">Show Toast</ix-button>
+    </div>
+</ix-message-bar>
+<br />
+<br />
+
+<ix-blind label="Description" collapsed>
+    Following shows a Category Filter<br />
+    This also uses a init functino located in the JavaScript file<br />
+</ix-blind>
+
+<ix-category-filter placeholder="Filter by" @ref="CategoryFilter"></ix-category-filter>
+
+@code {
+    ElementReference Drawer;
+    ElementReference InfoBox;
+    ElementReference CategoryFilter;
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+        if (firstRender)
+        {
+            JS.InvokeVoidAsync("InfoBoxClosingSequenceInit", InfoBox);
+            JS.InvokeVoidAsync("CategoryFilterInit", CategoryFilter);
+        }
+    }
+
+    async void ShowDrawer()
+    {
+        await JS.InvokeVoidAsync("ToggleDrawer", Drawer);
+    }
+
+    async void ShowToast()
+    {
+        await JS.InvokeVoidAsync("ShowToast", "I show you a toast");
+    }
+}

@@ -1,0 +1,27 @@
+﻿.LoadingWrapper {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.page {
+    display: grid;
+    grid-template-columns: 70px 1fr;
+}
+
+.sidebar {
+    grid-column-start: 1;
+    grid-column-end: 2;
+}
+
+.pageContent {
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+
+h1 {
+    color: var(--theme-color-primary);
+}

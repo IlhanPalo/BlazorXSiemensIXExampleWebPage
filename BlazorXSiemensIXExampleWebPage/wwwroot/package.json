@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@siemens/ix": "^1.0.0",
+    "@siemens/ix-icons": "^1.0.1"
+  }
+}

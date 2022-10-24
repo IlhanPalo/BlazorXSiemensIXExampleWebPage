@@ -1,0 +1,27 @@
+﻿@inject NavigationManager NavManager
+<ix-menu>
+    <ix-menu-item home-tab tab-icon="home" @onclick="ShowMainPage"> Home </ix-menu-item>
+    <ix-menu-item tab-icon="connector-rhomb-filled" @onclick="ShowJavaScriptGuid"> How to use Javascript </ix-menu-item>
+    <ix-menu-item tab-icon="globe" @onclick="ShowToastImplementation"> How to implement Toast </ix-menu-item>
+    <ix-menu-item tab-icon="star" disabled> Disabled Tab </ix-menu-item>
+    <ix-menu-item tab-icon="globe" style="display: none">
+        Should not visible
+    </ix-menu-item>
+</ix-menu>
+
+@code{
+    void ShowMainPage()
+    {
+        NavManager.NavigateTo("/");
+    }
+
+    void ShowJavaScriptGuid()
+    {
+        NavManager.NavigateTo("/JavaScriptGuid");
+    }
+
+    void ShowToastImplementation()
+    {
+        NavManager.NavigateTo("/ToastGuid");
+    }
+}

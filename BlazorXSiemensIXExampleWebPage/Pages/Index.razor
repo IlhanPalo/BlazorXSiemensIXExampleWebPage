@@ -1,0 +1,62 @@
+﻿@page "/"
+@inject IJSRuntime JS
+
+<ix-blind label="Description" collapsed>
+    This is a example Website to show you how to use the different SiemensXI Web Components <br />
+</ix-blind>
+<h1>Button</h1>
+<br />
+<ix-button class="AnimatedButton" variant="primary" @ref="Button1" @onclick="() => ChangeButtonColor(Button1)">Button</ix-button>
+<ix-button class="m-1" variant="secondary" @ref="Button2" @onclick="() => ChangeButtonColor(Button2)">Button</ix-button>
+<ix-button class="m-1" outline @ref="Button3" @onclick="() => ChangeButtonColor(Button3)">Button</ix-button>
+<ix-button class="m-1" invisible @ref="Button4" @onclick="() => ChangeButtonColor(Button4)">Button</ix-button>
+<br />
+<br />
+<h1>Chip</h1>
+<div class="ChipExample">
+    <ix-chip closable outline> Primary </ix-chip>
+    <ix-chip icon="print">Primary with icon</ix-chip>
+    <ix-chip style="width: 10rem" closable> Primary </ix-chip>
+
+    <ix-chip variant="critical" closable outline> Alarm </ix-chip>
+    <ix-chip variant="alarm" icon="print"> Alarm with icon </ix-chip>
+    <ix-chip variant="alarm" icon="print" style="width: 10rem" closable>
+        Alarm
+    </ix-chip>
+    <ix-chip variant="warning" icon="print" style="width: 10rem" closable>
+        Alarm
+    </ix-chip>
+    <ix-chip background="purple"
+             color="green"
+             variant="custom"
+             icon="print"
+             style="width: 10rem"
+             closable>
+        Custom
+    </ix-chip>
+    <br />
+    <h1>Category Filter</h1>
+</div>
+
+@code {
+    ElementReference Button1;
+    ElementReference Button2;
+    ElementReference Button3;
+    ElementReference Button4;
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+        JS.InvokeVoidAsync("ChipInit");
+    }
+
+    async void ShowToast()
+    {
+        await JS.InvokeVoidAsync("ShowToast", "And I show you a toast");
+    }
+
+    async void ChangeButtonColor(ElementReference button)
+    {
+        await JS.InvokeVoidAsync("ChangeButtonColorAnimation", button);
+    }
+}

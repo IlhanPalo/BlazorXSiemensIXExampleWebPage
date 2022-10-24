@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>BlazorXSiemensIXExampleWebPage</title>
+
+    <link href="StyleSheet.css" rel="stylesheet" />
+    <script src="JavaScript.js" type="text/javascript"></script>
+
+    <!-- Added for Siemens IX -->
+    <link rel="stylesheet" href="node_modules/@siemens/ix-icons/dist/css/ix-icons.css" />
+    <link rel="stylesheet" href="node_modules/@siemens/ix/dist/siemens-ix/siemens-ix.css" />
+    <script type="module">
+        import { defineCustomElements } from './node_modules/@siemens/ix/loader/index.js';
+        defineCustomElements();
+    </script>
+    <!-- Added for Siemens IX -->
+
+    <!-- Added for Toast -->
+    <script type="module">
+        import { toast } from './node_modules/@siemens/ix/dist/index.js';
+        ToastInit(toast);
+    </script>
+    <!-- Added for Toast -->
+
+</head>
+
+<body>
+    <div id="app">
+        <div class="LoadingWrapper">
+            <ix-spinner size="large" variant="primary"></ix-spinner>
+        </div>
+    </div>
+    <script src="_framework/blazor.webassembly.js"></script>
+</body>
+
+</html>

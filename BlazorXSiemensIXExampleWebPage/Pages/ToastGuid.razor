@@ -1,0 +1,20 @@
+﻿@page "/ToastGuid"
+@inject IJSRuntime JS
+<h3>ToastGuid</h3>
+<ix-blind label="Toast Description" collapsed>
+    Some Web-Components require further javascript function and imports. <br />
+    To use these Components you need to add a script type module to your index.html file located in the wwwroot directory<br />
+    In there you import the neccessery class, call a js function, and use the import as a parameter<br />
+    In the function you save the parameter in a file global variable to access the import variable<br />
+    In the following the button calls a function which generates a toast<br />
+</ix-blind>
+<ix-toast-container></ix-toast-container>
+
+<ix-button @onclick="ShowToast">Trigger toast</ix-button>
+
+@code {
+    async void ShowToast()
+    {
+        await JS.InvokeVoidAsync("ShowToast", "Hello World");
+    }
+}
